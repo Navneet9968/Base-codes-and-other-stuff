@@ -1,0 +1,7 @@
+fptr=open('sample.txt', 'r')
+a=fptr.read()
+print(a)
+l=a.split()
+print(l)
+print("the no of words are =",len(l))
+fptr.close()
