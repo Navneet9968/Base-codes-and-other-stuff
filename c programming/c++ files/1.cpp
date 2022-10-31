@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
     string charname = "Navneet";
-    int age=20;
+    int age=18;
     double grade='A';
     bool isMale=true;
     cout <<"hello world"<<endl;
