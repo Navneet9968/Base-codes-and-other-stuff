@@ -218,7 +218,7 @@ class CanteenManagementSystem:
         btnAddData=Button(FrameButton,command=self.update_data,text="UPDATE",font=("arial",13,"bold"),width=23,bg="black",fg="white")
         btnAddData.grid(row=0,column=2)
 
-        btnAddData=Button(FrameButton,text="DELETE",font=("arial",13,"bold"),width=23,bg="black",fg="white")
+        btnAddData=Button(FrameButton,command=self.delete,text="DELETE",font=("arial",13,"bold"),width=23,bg="black",fg="white")
         btnAddData.grid(row=0,column=3)
 
         btnAddData=Button(FrameButton,command=self.reset,text="RESET",font=("arial",13,"bold"),width=23,bg="black",fg="white")
@@ -352,10 +352,22 @@ class CanteenManagementSystem:
 
 
 
-    # def delete(self):
-    #     if self.prn_no_var=="" or self.id_no_var=="":
-    #         messagebox.showinfo("error","first select the member")
-    #     else:
+    def delete(self):
+        if self.prn_no_var=="" or self.id_no_var=="":
+            messagebox.showinfo("error","first select the member")
+        else:
+            conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
+            mycursor=conn.cursor()
+            query="delete from canteen where PRN_NO=%s"
+            value=(self.prn_no_var.get(),)
+            mycursor.execute(query,value)
+
+            conn.commit()
+            self.fetch_data()
+            self.reset()
+            conn.close()
+
+            messagebox.showinfo("Success","member has been deleted")
 
 
 
