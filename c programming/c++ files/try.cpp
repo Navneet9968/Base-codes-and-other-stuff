@@ -1,42 +1,33 @@
-#include<bits/stdc++.h>
-class Solution {
-public:
-    
-      bool isPalindrome(string& s) {   
-          int l=0, r=s.size()-1;
-          while(l<r){if(s[l++]!=s[r--]) return false;}
-          return true; 
-    }
+// C++ program to print all primes less than N
+#include <bits/stdc++.h>
+using namespace std;
 
+// function check whether a number is prime or not
+bool isPrime(int n)
+{
+	// Corner case
+	if (n <= 1)
+		return false;
 
-    vector<vector<int>> palindromePairs(vector<string>& words) {
-        vector<vector<int>> ans;
-        int n = words.size();
-        if(n<2) return ans;
-        unordered_map<string, int> m;
-        for(int i=0;i<n;++i){
-            
-            auto s= words[i];
-            reverse(s.begin(),s.end());
-            m[s]=i;
-        }
-        
-        for(int i=0; i<n; ++i){
-            for(int j=0; j<=words[i].size(); ++j){
-                string st1 = words[i].substr(0,j); // prefix
-                string st2 = words[i].substr(j);    //sufix           
-                 
-                 if(m.count(st1) && isPalindrome(st2) && m[st1] != i) {
-                     ans.push_back({i, m[st1]});    
-                 }
+	// Check from 2 to n-1
+	for (int i = 2; i < n; i++)
+		if (n % i == 0)
+			return false;
 
-                 if(!st1.empty() && m.count(st2) && isPalindrome(st1) && m[st2] != i) {
-                     ans.push_back({m[st2], i});
-                 }
-            }            
-        }
-        return ans;
-    }
+	return true;
+}
 
-    
-};
+// Function to print primes
+void printPrime(int n)
+{
+	for (int i = 2; i <= n; i++)
+		if (isPrime(i))
+			cout << i << " ";
+}
+
+// Driver Code
+int main()
+{
+	int n = 2147483647;
+	printPrime(n);
+}

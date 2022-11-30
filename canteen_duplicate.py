@@ -332,13 +332,18 @@ class CanteenManagementSystem:
         if(conn.is_connected()):
             print("Connected successfully!")
         mycursor=conn.cursor()
-        mycursor.execute("INSERT INTO canteen values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
+        
+        sql1 = """  INSERT INTO MEMBER values (%s,%s,%s,%s,%s,%s)",(
                                                                             self.member_var.get(),
                                                                             self.prn_no_var.get(),
                                                                             self.id_no_var.get(),
                                                                             self.fname_var.get(),
                                                                             self.lname_var.get(),
-                                                                            self.mob_no_var.get(),
+                                                                            self.mob_no_var.get()
+                                                                            )  """
+
+
+        sql2 = """INSERT INTO FOOD values (%s,%s,%s,%s,%s,%s,%s)",(
                                                                             self.fid_var.get(),
                                                                             self.food_name_var.get(),
                                                                             self.calories_var.get(),
@@ -346,8 +351,13 @@ class CanteenManagementSystem:
                                                                             self.handlingCharge_var.get(),
                                                                             self.date_var.get(),
                                                                             self.totalCost_var.get()
-                                                                            ))
-                                                                    
+                                                                            )"""
+
+        queries = [sql1, sql2]
+
+        # returns an iterator
+        results = mycursor.execute(";".join(queries), multi=True)
+
         conn.commit()
         self.fetch_data()
         conn.close()
@@ -360,7 +370,14 @@ class CanteenManagementSystem:
 
         conn=mysql.connector.connect(host='localhost',port=3307,username="root",password="root",database="mydb")
         mycursor=conn.cursor()
-        mycursor.execute("SELECT * FROM canteen")
+        sql1 = "SELECT * FROM MEMBER"
+
+
+        sql2 = "SELECT * FROM FOOD"
+
+        queries = [sql1, sql2]
+
+        mycursor.execute(";".join(queries), multi=True)
         rows=mycursor.fetchall()
 
         if(len(rows) != 0):
@@ -371,26 +388,33 @@ class CanteenManagementSystem:
         conn.close()
 
 
+
+
     def update_data(self):
 
         conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
 
         mycursor=conn.cursor()
 
-        mycursor.execute("update canteen set member=%s,ID=%s,fname=%s,lname=%s,MOB_NO=%s,fid=%s,foodname=%s,calories=%s,gst=%s,handling=%s,date=%s,totalCost=%s where PRN_NO=%s",(
+        mycursor.execute("update MEMBER set member=%s,ID=%s,fname=%s,lname=%s,MOB_NO=%s where PRN_NO=%s",(
                                 self.member_var.get(),
                                 self.id_no_var.get(),
                                 self.fname_var.get(),
                                 self.lname_var.get(),
                                 self.mob_no_var.get(),
-                                self.fid_var.get(),
+                                self.prn_no_var.get()
+        ))
+
+        conn.commit()
+
+        mycursor.execute("update FOOD set foodname=%s,calories=%s,gst=%s,handling=%s,date=%s,totalCost=%s where fid=%s",(
                                 self.food_name_var.get(),
                                 self.calories_var.get(),
                                 self.gst_var.get(),
                                 self.handlingCharge_var.get(),
                                 self.date_var.get(),
                                 self.totalCost_var.get(),
-                                self.prn_no_var.get()
+                                self.fid_var.get(),
         ))
         conn.commit()
         self.fetch_data()
@@ -409,16 +433,25 @@ class CanteenManagementSystem:
         else:
             conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
             mycursor=conn.cursor()
-            query="delete from canteen where PRN_NO=%s"
+            query="delete from MEMBER where PRN_NO=%s"
             value=(self.prn_no_var.get(),)
             mycursor.execute(query,value)
 
             conn.commit()
+            query="delete from FOOD where fid=%s"
+            value=(self.fid_var.get(),)
+            mycursor.execute(query,value)
+
+            conn.commit()
+
+
             self.fetch_data()
             self.reset()
             conn.close()
 
             messagebox.showinfo("Success","member has been deleted")
+
+            
 
 
 
