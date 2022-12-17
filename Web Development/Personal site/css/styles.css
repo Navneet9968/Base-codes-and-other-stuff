@@ -1,5 +1,6 @@
 body{
   background-color: #EAF6F6;
+
 }
   hr {
     background-color: #EAF6F6;
@@ -11,10 +12,45 @@ body{
   }
 h1 {
   color: #66BFBF;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 h3 {
   color: #66BFBF;
+  
 }
 h2 {
   color: #66BFBF;
+  
 }
+.back-video{
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+@media(max-aspect-ratio: 16/9){
+  .back-video{
+    width: auto;
+    height: 100%;
+  }
+}
+.achievements th{
+  background-color: #ba68c8;
+  color: #fafafa;
+  font-family: 'Open Sans',Sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+ 
+ }
+.achievements tr{
+  width: 100%;
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+ }
+p {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.trebuchet_font{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
