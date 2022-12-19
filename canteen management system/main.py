@@ -328,7 +328,7 @@ class CanteenManagementSystem:
 
     def add_data(self):
 
-        conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
+        conn=mysql.connector.connect(host="localhost",port=3306,username="root",password="root",database="mydb")
         if(conn.is_connected()):
             print("Connected successfully!")
         mycursor=conn.cursor()
@@ -358,7 +358,7 @@ class CanteenManagementSystem:
 
     def fetch_data(self):
 
-        conn=mysql.connector.connect(host='localhost',port=3307,username="root",password="root",database="mydb")
+        conn=mysql.connector.connect(host='localhost',port=3306,username="root",password="root",database="mydb")
         mycursor=conn.cursor()
         mycursor.execute("SELECT * FROM canteen")
         rows=mycursor.fetchall()
@@ -373,7 +373,7 @@ class CanteenManagementSystem:
 
     def update_data(self):
 
-        conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
+        conn=mysql.connector.connect(host="localhost",port=3306,username="root",password="root",database="mydb")
 
         mycursor=conn.cursor()
 
@@ -407,7 +407,7 @@ class CanteenManagementSystem:
             messagebox.showinfo("error","first select the member")
 
         else:
-            conn=mysql.connector.connect(host="localhost",port=3307,username="root",password="root",database="mydb")
+            conn=mysql.connector.connect(host="localhost",port=3306,username="root",password="root",database="mydb")
             mycursor=conn.cursor()
             query="delete from canteen where PRN_NO=%s"
             value=(self.prn_no_var.get(),)
