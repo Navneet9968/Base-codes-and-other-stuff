@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/82db2b9968.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- now creating the home page of the website-->
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/logo.png"  alt="logo" class="logo">
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>Web Developer</p>
+            <h1>Hi, I'm <span>Navneet</span> Kumar <br> From India. </h1>
+        </div>
+    </div>
+</div>
+
+<!--now creating the about section-->
+
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/image1.jpg" alt="group photo">
+            </div>
+            <div class="about-col-2">
+                <h1>About Me</h1>
+                <p>I am a student currently studying in the Computer Science Department in <a href="http://nsut.ac.in/" class="red-color">Netaji Subhash University of
+                    Technology</a>.<br>I completed my schooling
+                    from <a  class="red-color" href="https://vvdav.org/">VVDAV Public School,Vikaspuri</a>. I am an avid learner and always ready
+                    to do something interesting. I have great interest in computer progamming
+                    and right now i am learning web development.</p>
+
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                    <p class="tab-links"onclick="opentab('hobbies')">Hobbies</p>
+                </div>
+
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>DSA</span><br>Solving Real Life Problems</li>
+                        <li><span>LeetCode</span><br><a href="https://leetcode.com/navneet9810/">Profile</a></li>
+
+                        <li><span>Web Development<br></span>Designing Websites</li>
+                    </ul>
+                </div>
+
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>NSUT, Delhi (Btech in CSE)<br></span>8.67 CGPA</li>
+                        <li><span>Veda Vyasa DAV Public School,Vikaspuri (Class 12)</span><br>96%</li>
+                        <li><span>Veda Vyasa DAV Public School,Vikaspuri (Class 10)</span><br>97%</li>
+                    </ul>
+                </div>
+
+                <div class="tab-contents" id="hobbies">
+                    <ul>
+                        <li>Gaming</li>
+                        <li>Cricket</li>
+                        <li>Watching Movies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-now creating the contact section--->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-regular fa-envelope"></i>navneetkumar9810@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>9968041966</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/navneetkumar7495/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/navneet-kumar-525892148/"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+ 
+<script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+    
+</body>
+</html>
