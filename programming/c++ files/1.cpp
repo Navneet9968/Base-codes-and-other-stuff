@@ -8,6 +8,7 @@ int main(){
     bool isMale=true;
     cout <<"hello world"<<endl;
     cout<<"hello my name is " << charname <<" and my age is "<< age <<endl;
+    
 
     return 0;
 }
