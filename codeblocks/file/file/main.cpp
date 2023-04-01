@@ -1,50 +1,53 @@
 #include <iostream>
-#include<windows.h>
-#include<mysql.h>
-#include<sstream>
-#include<bits/stdc++.h>
+#include <thread>
+#include <mutex>
+#include <chrono>
 
+// Create a mutex object to synchronize access to shared resources
+std::mutex mtx;
 
-using namespace std;
+// Define a bounded buffer to store data
+int buffer[5];
+int buffer_index = 0;
 
-int main()
-{
-    MYSQL* conn;
-    conn = mysql_init(0);
-    conn = mysql_real_connect(conn, "192.168.1.38", "admin", "admin", "file", 0, NULL, 0);
-    MYSQL_ROW row;
-    MYSQL_RES* res;
+// Function to simulate IPC
+void ipc_simulator(int id) {
+    // Lock the mutex before accessing shared resources
+    mtx.lock();
+    
+    // Simulate some IPC activity
+    std::cout << "Process " << id << " is performing IPC" << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    
+    // Unlock the mutex after accessing shared resources
+    mtx.unlock();
+}
 
-        if(conn){
-        int qstate = mysql_query(conn, "delimiter $$\
-                create trigger verify_age before insert on employee\
-                for each row\
-                                    begin\
-                if new.dob > '1995-01-01' then\
-                signal sqlstate '45000'\
-                set message_text = 'error:age must be atleast 25 years!';\
-                end if;end;");
-        if(!qstate){
-            res = mysql_store_result(conn);
-            int count = mysql_num_fields(res);
-            while(row = mysql_fetch_row(res)){
-                    for(int i=0;i<count;i++){
-                        cout<<"\t"<<row[i];
-                    }
-                    cout<<endl;
-            }
-        }
+// Function to simulate bounded buffer activity
+void bb_simulator(int id) {
+    // Lock the mutex before accessing shared resources
+    mtx.lock();
+    
+    // Simulate some bounded buffer activity
+    if (buffer_index < 5) {
+        buffer[buffer_index] = id;
+        buffer_index++;
     }
+    std::cout << "Thread " << id << " added an item to the buffer" << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    
+    // Unlock the mutex after accessing shared resources
+    mtx.unlock();
+}
 
-    else{
-        cout<<"not connected"<<endl;
-    }
-    cout << "Hello world!" << endl;
-
-
-
-
-
-
+int main() {
+    // Create two threads to simulate IPC and bounded buffer activity
+    std::thread t1(ipc_simulator, 1);
+    std::thread t2(bb_simulator, 2);
+    
+    // Wait for both threads to finish
+    t1.join();
+    t2.join();
+    
     return 0;
 }

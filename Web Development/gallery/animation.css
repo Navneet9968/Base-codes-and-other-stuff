@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: grey;
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.box{
+    flex-wrap: wrap;
+    align-self: center;
+    display: flex;
+    border: solid 3px black;
+    height: 500px;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+.sub-box{
+    height: 300px;
+    width: 300px;
+    border: 5px black solid;
+    border-radius: 50%;
+    
+}   
+.sub-box:hover{
+    animation: orbit 3s  ease-in-out  normal both ;
+}
+
+
+.satellite{
+    height: 100px;
+    width: 100px;
+    
+    border-radius: 50%;
+}
+#inner-circle{
+    /* display: none;; */
+    translate: 100px -300px;
+    transform: scale(1.65);
+    border: 3px solid black;
+
+}
+#satellite-1{
+    translate: 50px -30px ;
+    background-color:black ;
+    /* background-color: aliceblue; */
+}
+#satellite-2{
+    translate: 250px;
+    background-color:black ;
+    /* background-color: aqua; */
+}
+#satellite-3{
+    background-color:black ;
+    /* translate: -0px px; */
+    /* background-color: blue; */
+}
+#centerSatellite{
+    translate: 100px -200px;
+    border-radius: 50%;
+    background-color: black ;
+}
+@keyframes orbit {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+
+}
+/* 
+@keyframes revolutions {
+    0%,100%{
+
+    }
+    25%{
+        
+        transform: translate(200px);
+    }
+    50%{
+        
+        transform: translate(200px,200px);
+    }
+
+    75%{
+        transform: translate(0px,200px);
+    }
+} */
+
+
+
+
+
+/*--------------------2nd animation----------------------*/
+
+.loading {
+    height: 30px;
+    width: 30px;
+    /* border: 2px solid #111; */
+    background-color: white;
+    justify-content: space-around;
+    margin: 10px;
+    border-radius: 50%;
+    animation: up-down 0.4s ease-in-out  infinite both alternate;
+
+}
+.loading:nth-child(2){
+    animation-delay: 0.1s;
+}
+.loading:nth-child(3){
+    animation-delay: 0.2s;
+}
+.loading:nth-child(4){
+    animation-delay: 0.3s;
+}
+@keyframes up-down {
+    from {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+

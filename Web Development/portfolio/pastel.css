@@ -1,0 +1,37 @@
+<div ></div>
+
+<style>
+  body{
+    background: #19191A;
+  }
+  
+  div {
+    width: 150px;
+    height: 150px;
+    background: #4F77FF;
+    border-radius: 100px;
+    left:50%;
+    top:50px;
+    position:absolute;
+    transform:translateX(-50%);
+    overflow: hidden
+  }
+  
+  :before{
+    content: '';
+    position: absolute;
+    width:75px;
+    height:125px;
+    right:50%;
+  }
+
+  div:before{
+    background:#9AD5FF;
+    top:50%;
+  }
+
+  body:before{
+    background:#F9E492;
+    top:125;
+  }
+</style>

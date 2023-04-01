@@ -144,13 +144,6 @@ void search( string txt, string pat)
 }
  
 
-
-
-
-
-
-
-
 int main() {
     string str ="THIS IS A TEST TEXT"   ;
     string pattern="TEST" ;

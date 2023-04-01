@@ -1,0 +1,15 @@
+h1 {
+  color: gold;
+}
+
+.huge{
+  font-size: 4rem;
+}
+.body {
+  background-color: antiquewhite;
+}
+
+.dark-mode{
+  background-color: #121212 ;
+  color: aliceblue;
+}
